@@ -7,6 +7,8 @@ Aplicativo desktop e workflow Python para preparar ligantes a partir de planilha
 - Adriano Marques Gonçalves
 - Universidade de Araraquara - UNIARA
 - amgoncalves@uniara.edu.br
+- Daniel Grajales Ruiz
+- IQ/UNESP
 
 ## Principais capacidades
 
