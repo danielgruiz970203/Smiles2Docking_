@@ -9,10 +9,10 @@
 AppId={{9F6C1B97-6E92-4D9E-9D97-0CE1D36D85F4}}
 AppName={#AppName}
 AppVersion={#AppVersion}
-AppPublisher=[AUTHOR PLACEHOLDER]
-AppPublisherURL=https://github.com/[REPO PLACEHOLDER]/smiles2docking
-AppSupportURL=https://github.com/[REPO PLACEHOLDER]/smiles2docking
-AppUpdatesURL=https://github.com/[REPO PLACEHOLDER]/smiles2docking
+AppPublisher=Adriano Marques Goncalves; Daniel Grajales Ruiz
+AppPublisherURL=https://github.com/amgoncalvesusp/Smiles2Docking
+AppSupportURL=https://github.com/amgoncalvesusp/Smiles2Docking/issues
+AppUpdatesURL=https://github.com/amgoncalvesusp/Smiles2Docking/releases
 DefaultDirName={autopf}\SMILES2DOCKING
 DefaultGroupName=SMILES2DOCKING
 OutputDir=output
