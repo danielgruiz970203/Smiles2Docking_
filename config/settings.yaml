@@ -1,0 +1,71 @@
+input:
+  source_type: spreadsheet
+  file_path: ""
+  sheet_name: null
+  smiles_column: smiles
+  access_code_column: access_code
+
+processing:
+  preserve_kekule: true
+  strict_fragment_disambiguation: true
+
+protonation:
+  enabled: true
+  backend: dimorphite          # dimorphite | openbabel | none
+  ph: 7.4
+  ph_tolerance: 1.0            # used by dimorphite
+  max_variants: 1              # used by dimorphite
+  variant_selection: first     # first | most_neutral (used by dimorphite)
+  pka_precision: 1.0           # used by dimorphite
+  obabel_binary: obabel
+  temp_dir: ""                 # blank => resolved to user cache dir
+
+structure_generation:
+  embed_seed: 61453
+  max_attempts: 3
+  optimize_geometry: true
+  force_field_preference:
+    - mmff94
+    - mmff94s
+    - uff
+  max_optimization_iterations: 1000
+  allow_unoptimized_output: false
+  # Semi-empirical (MOPAC PM7) refinement: opt-in only.
+  # Significantly slower than force fields; use for curated small sets.
+  mopac:
+    enabled: false
+    method: PM7
+    binary: mopac
+    keywords: "PM7 PRECISE GNORM=0.01"
+    max_seconds: 120
+
+parallel:
+  enabled: true
+  n_jobs: -1                   # -1 => all cores; 1 => sequential
+  backend: loky                # joblib backend
+  batch_size: auto
+
+export:
+  output_dir: ""               # blank => resolved to user data dir
+  overwrite: true
+  temp_dir: ""                 # blank => resolved to user cache dir
+  mode: separate_mol2          # separate_mol2 | single_mol2 | separate_sdf | single_sdf | separate_pdbqt | single_pdbqt
+  bundle_basename: ""
+  pdbqt:
+    rigid: false               # if true: write all bonds as non-rotatable
+    add_hydrogens: true
+    keep_nonpolar_hydrogens: false
+    charge_model: gasteiger    # gasteiger | none
+
+reporting:
+  report_dir: data/reports
+  use_output_dir: true
+
+logging:
+  log_dir: logs
+  file_name: workflow.log
+  level: INFO
+  use_output_dir: true
+
+ui:
+  language: en

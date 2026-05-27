@@ -1,0 +1,70 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# --- Virtual envs / build ---
+.venv/
+.buildvenv*/
+build/
+dist/
+*.egg-info/
+installer/output/
+release/
+release_*/
+packaging/output/
+
+# --- Test scratch ---
+tests/.tmp/
+.tmp/
+.tmp_*/
+sandbox_probe/
+_temp_*.py
+
+# --- Generated data ---
+data/intermediate/
+data/processed/
+data/reports/
+data/bench_inputs/
+custom_output/
+logs/
+
+# --- Legacy / snapshot trees not part of this release ---
+SMILES2Docking_Full/
+SMILES2DOCKING/
+Scripts_Daniel/
+temp_skill_build/
+
+# --- Logs / scratch files ---
+*.log
+MOPAC Error message.txt
+clean_stderr.log
+clean_stdout.log
+default023_*.log
+default023_*.txt
+qt_stderr.log
+qt_stdout.log
+dist_stderr.log
+dist_stdout.log
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Editor / Agent ---
+.vscode/
+.idea/
+.claude/
+*.swp
+*~
+
+# --- Secrets / local config ---
+config/database_config.yaml
+.env
+.env.*
+!.env.example

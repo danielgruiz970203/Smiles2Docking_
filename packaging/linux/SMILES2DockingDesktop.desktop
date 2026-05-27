@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=SMILES2Docking Desktop
+Comment=Ligand preparation and protonation workflow for docking studies
+Exec=SMILES2DockingDesktop
+Icon=smiles2docking
+Terminal=false
+Categories=Science;Education;Chemistry;
+StartupNotify=true

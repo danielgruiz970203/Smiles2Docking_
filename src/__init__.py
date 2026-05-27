@@ -1,0 +1,1 @@
+"""SMILES2Docking package."""
