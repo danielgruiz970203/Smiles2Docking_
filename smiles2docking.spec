@@ -1,4 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
+import sys
 from pathlib import Path
 
 import PySide6
@@ -7,6 +8,29 @@ from PyInstaller.utils.hooks import collect_data_files, collect_dynamic_libs, co
 
 project_root = Path.cwd()
 pyside_root = Path(PySide6.__file__).resolve().parent
+
+
+def _resolve_qt_platforms_dir() -> Path:
+    """Locate the Qt 'platforms' plugin dir across PySide6 layouts.
+
+    pip wheels store it under <PySide6>/plugins/platforms; conda builds
+    store it under <sys.prefix>/Library/lib/qt6/plugins/platforms.
+    """
+    candidates = [
+        pyside_root / "plugins" / "platforms",
+        Path(sys.prefix) / "Library" / "lib" / "qt6" / "plugins" / "platforms",
+        Path(sys.prefix) / "Library" / "lib" / "qt5" / "plugins" / "platforms",
+    ]
+    for candidate in candidates:
+        if candidate.is_dir():
+            return candidate
+    raise FileNotFoundError(
+        "Qt 'platforms' plugin directory not found. Checked: "
+        + ", ".join(str(c) for c in candidates)
+    )
+
+
+qt_platforms_dir = _resolve_qt_platforms_dir()
 
 rdkit_hiddenimports = sorted(
     set(
@@ -66,7 +90,7 @@ datas = collect_data_files("rdkit") + collect_data_files("meeko") + [
     (str(project_root / "CITATION.cff"), "."),
     (str(project_root / "LICENSE"), "."),
     (str(project_root / "packaging" / "qt.conf"), "."),
-    (str(pyside_root / "plugins" / "platforms"), "platforms"),
+    (str(qt_platforms_dir), "platforms"),
 ]
 
 binaries = collect_dynamic_libs("rdkit") + collect_dynamic_libs("scipy") + collect_dynamic_libs("gemmi")
