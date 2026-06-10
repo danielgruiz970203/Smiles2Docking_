@@ -88,6 +88,7 @@ project_datas = [
     (str(project_root / "config"), "config"),
     (str(project_root / "docs"), "docs"),
     (str(project_root / "data" / "raw"), "data/raw"),
+    (str(project_root / "vendor" / "mopac"), "vendor/mopac"),
     (str(project_root / "README.md"), "."),
     (str(project_root / "AUTHORS.md"), "."),
     (str(project_root / "CITATION.cff"), "."),

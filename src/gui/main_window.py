@@ -592,7 +592,7 @@ class MainWindow(QMainWindow):
         )
         self.pm7_checkbox = QCheckBox("")
         self.pm7_checkbox.setChecked(
-            bool(self.base_settings.get("pm7", {}).get("enabled", True))
+            bool(self.base_settings.get("pm7", {}).get("enabled", False))
         )
         self.pm7_checkbox.toggled.connect(self._toggle_pm7_state)
         self.mopac_method_combo = QComboBox()

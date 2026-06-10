@@ -27,7 +27,7 @@ protonation:
   pka_precision: 1.0
 
 pm7:
-  enabled: true
+  enabled: false
   method: PM7
   binary_name: mopac
   binary_path: ""

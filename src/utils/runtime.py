@@ -63,6 +63,14 @@ def bundled_mopac_binary(configured_path: str | None = None, default_binary: str
         resolve_runtime_path("mopac", "bin", "mopac"),
         resolve_runtime_path("mopac", "bin", "mopac.exe"),
         Path(get_mopac_executable_path()),
+        Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
+        / "MOPAC"
+        / "bin"
+        / "MOPAC.exe",
+        Path(os.environ.get("ProgramFiles", r"C:\Program Files"))
+        / "MOPAC"
+        / "bin"
+        / "mopac.exe",
     ]
     if configured_path:
         candidates.insert(0, Path(configured_path))

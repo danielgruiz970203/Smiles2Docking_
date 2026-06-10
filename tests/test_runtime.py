@@ -32,6 +32,30 @@ def test_bundled_obabel_binary_prefers_linux_bundle(monkeypatch) -> None:
         assert runtime.bundled_obabel_binary() == str(linux_binary)
 
 
+def test_bundled_mopac_binary_prefers_vendor_bundle(monkeypatch) -> None:
+    with workspace_tmp_dir() as tmp_path:
+        binary = tmp_path / "vendor" / "mopac" / "MOPAC.exe"
+        binary.parent.mkdir(parents=True)
+        binary.write_text("", encoding="utf-8")
+        monkeypatch.setattr(runtime, "runtime_root", lambda: tmp_path)
+
+        assert runtime.bundled_mopac_binary() == str(binary)
+
+
+@pytest.mark.skipif(os.name != "nt", reason="Windows default MOPAC path")
+def test_bundled_mopac_binary_finds_windows_default_install(monkeypatch) -> None:
+    with workspace_tmp_dir() as tmp_path:
+        runtime_root = tmp_path / "runtime"
+        program_files = tmp_path / "Program Files"
+        binary = program_files / "MOPAC" / "bin" / "MOPAC.exe"
+        binary.parent.mkdir(parents=True)
+        binary.write_text("", encoding="utf-8")
+        monkeypatch.setattr(runtime, "runtime_root", lambda: runtime_root)
+        monkeypatch.setenv("ProgramFiles", str(program_files))
+
+        assert runtime.bundled_mopac_binary() == str(binary)
+
+
 @pytest.mark.skipif(os.name == "nt", reason="LD_LIBRARY_PATH is only set on POSIX")
 def test_openbabel_runtime_env_sets_linux_paths(monkeypatch) -> None:
     with workspace_tmp_dir() as tmp_path:

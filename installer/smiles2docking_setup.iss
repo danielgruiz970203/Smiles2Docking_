@@ -22,7 +22,7 @@ SolidCompression=yes
 ArchitecturesAllowed=x64
 ArchitecturesInstallIn64BitMode=x64
 MinVersion=10.0
-PrivilegesRequired=lowest
+PrivilegesRequired=admin
 LicenseFile=..\LICENSE
 SetupIconFile=..\assets\caffeine_icon.ico
 UninstallDisplayName=SMILES2DOCKING
@@ -37,6 +37,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "..\dist\SMILES2DockingDesktop\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\vendor\mopac\*"; DestDir: "{autopf}\MOPAC\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [InstallDelete]
 Type: filesandordirs; Name: "{app}\*"
@@ -71,7 +72,9 @@ begin
     AuthorsNoticePage.ID,
     'Bundled third-party software',
     'MOPAC 23.2.4 is bundled with SMILES2DOCKING.',
-    'This installer includes MOPAC 23.2.4 in the application folder. MOPAC is licensed under the Apache License 2.0.' + #13#10 + #13#10 +
+    'This installer includes MOPAC 23.2.4 and installs it to the default Windows path:' + #13#10 +
+    'C:\Program Files\MOPAC\bin' + #13#10 + #13#10 +
+    'MOPAC is licensed under the Apache License 2.0.' + #13#10 + #13#10 +
     'MOPAC license URL:' + #13#10 +
     'https://github.com/openmopac/mopac/blob/main/LICENSE' + #13#10 + #13#10 +
     'No separate MOPAC installer is run, no system PATH changes are made, and installation does not require internet access.'

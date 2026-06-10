@@ -1,6 +1,17 @@
 from __future__ import annotations
 
-from src.utils.config import merge_settings, resolve_project_path, resolve_settings_paths
+from src.utils.config import (
+    load_settings,
+    merge_settings,
+    resolve_project_path,
+    resolve_settings_paths,
+)
+
+
+def test_default_settings_keep_mopac_disabled() -> None:
+    settings = load_settings()
+
+    assert settings["pm7"]["enabled"] is False
 
 
 def test_output_dir_can_drive_report_and_log_locations() -> None:
